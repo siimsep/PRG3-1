@@ -1,9 +1,10 @@
 # PRG3-1: React, Node, Express, MySQL 
-##klooni repo
+## Klooni repo
 
 git clone https://github.com/siimsep/PRG3-1.git
 
-##käivita Dockeris
+## Käivita Dockeris
+
 docker-compose up --build
 
 Rakendus tuleb aadressile: http://localhost:3050/

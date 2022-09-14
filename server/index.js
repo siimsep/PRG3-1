@@ -15,10 +15,7 @@ const db = mysql.createPool({
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-// Add an Express method to parse the POST method.
-/* app.get('/', (req, res) => {
-    res.send('Hello there')
-}) */
+
 // add a route that will process a Select MySQL query to retrieve all the books from the database
 app.get('/get', (req, res) => {
     const SelectQuery = " SELECT * FROM schedule";
@@ -29,10 +26,11 @@ app.get('/get', (req, res) => {
 
 // an endpoint to process and INSERT SQL command.
 app.post("/insert", (req, res) => {
+    const lectureCode = req.body.setLectureCode;
     const lectureName = req.body.setLectureName;
-    const lectureLecturer = req.body.setLecturer;
-    const InsertQuery = "INSERT INTO schedule (lecture_name, lecture_lecturer) VALUES (?, ?)";
-    db.query(InsertQuery, [lectureName, lectureLecturer], (err, result) => {
+    const lecturer = req.body.setLecturer;
+    const InsertQuery = "INSERT INTO schedule (lecture_code, lecture_name, lecture_lecturer) VALUES (?, ?, ?)";
+    db.query(InsertQuery, [lectureCode, lectureName, lecturer], (err, result) => {
       console.log(result)
     })
   })

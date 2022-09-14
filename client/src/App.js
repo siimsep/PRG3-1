@@ -7,8 +7,9 @@ class App extends Component {
   constructor(props) {
     super(props)
       this.state = {
+        setLectureCode: '',
         setLectureName: '',
-        setLectureLecturer: '',
+        setLecturer: '',
         fetchData: [],
         lectureUpdate: ''
       }
@@ -22,6 +23,8 @@ class App extends Component {
   }
   handleChange2 = (event) => {
     this.setState({
+      codeUpdate: event.target.value,
+      lectureUpdate: event.target.value,
       lecturerUpdate: event.target.value
     })
   }
@@ -63,11 +66,9 @@ class App extends Component {
         <React.Fragment>
           <Card style={{ width: '18rem'}} className='m-2'>
             <Card.Body>
-              <Card.Title>{val.lecture_name}</Card.Title>
-              <Card.Text>
-                {val.lecture_lecturer}
-              </Card.Text>
-              <input name='lecturerUpdate' onChange={this.handleChange2} placeholder='Muuda õpetajat'></input>
+              <Card.Title> <input name='codeUpdate' onChange={this.handleChange2} defaultValue={val.lecture_code}></input></Card.Title>
+              <Card.Title> <input name='lectureUpdate' onChange={this.handleChange2} defaultValue={val.lecture_name}></input></Card.Title>
+              <Card.Title><input name='lecturerUpdate' onChange={this.handleChange2} defaultValue={val.lecture_lecturer}></input></Card.Title>
               <Button className='m-2' onClick={() => { this.edit(val.id)}}>Muuda</Button>
               <Button onClick={() => { this.delete(val.id)}}>Kustuta</Button>
             </Card.Body>
@@ -80,6 +81,7 @@ class App extends Component {
       <div className='App'>
         <h1>Tunniplaanilaadne toode</h1>
         <div className='form'>
+          <input name='setLectureCode' placeholder='Sisesta ainekood' onChange={this.handleChange}/>
           <input name='setLectureName' placeholder='Sisesta õppeaine' onChange={this.handleChange}/>
           <input name='setLecturer' placeholder='Sisesta õppejõud' onChange={this.handleChange}/>
         </div>
